@@ -8,6 +8,7 @@ namespace IntroSkip.UI
     internal class IntroSkipSettingsFlowCoordinator : FlowCoordinator, IInitializable
     {
         private IntroSkipSettingsViewController _viewController;
+
         protected override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
         {
             if (!firstActivation) return;
