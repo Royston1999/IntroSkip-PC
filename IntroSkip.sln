@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroSkip", "IntroSkip\IntroSkip.csproj", "{BBC25CE9-FFEE-415F-B4FD-18782AFD878B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBC25CE9-FFEE-415F-B4FD-18782AFD878B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC25CE9-FFEE-415F-B4FD-18782AFD878B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC25CE9-FFEE-415F-B4FD-18782AFD878B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC25CE9-FFEE-415F-B4FD-18782AFD878B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDBE3BBE-3B29-4775-AF15-0A9680FD1182}
+	EndGlobalSection
+EndGlobal
