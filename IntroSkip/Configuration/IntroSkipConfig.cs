@@ -4,10 +4,8 @@ using IPA.Config.Stores;
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
 namespace IntroSkip.Configuration
 {
-    internal class PluginConfig
+    internal class IntroSkipConfig
     {
-        public static PluginConfig Instance { get; set; }
-
         public virtual bool Enabled { get; set; } = true;
         public virtual bool SkipIntro { get; set; } = true;
         public virtual bool SkipMiddle { get; set; } = true;

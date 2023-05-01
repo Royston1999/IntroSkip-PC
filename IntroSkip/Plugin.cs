@@ -17,12 +17,12 @@ namespace IntroSkip
         [Init]
         public void Init(IPALogger logger, Config config, Zenjector zenjector)
         {
-            PluginConfig.Instance = config.Generated<PluginConfig>();
             Instance = this;
             Log = logger;
             zenjector.Expose<CoreGameHUDController>("Environment");
             zenjector.Install<IntroSkipInstaller>(Location.StandardPlayer);
             zenjector.Install<MenuInstaller>(Location.Menu);
+            zenjector.Install(Location.App, container => container.BindInstance(config.Generated<IntroSkipConfig>()));
             Log.Info("IntroSkip initialized.");
         }
     }

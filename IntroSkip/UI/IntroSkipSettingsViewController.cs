@@ -2,60 +2,62 @@
 using BeatSaberMarkupLanguage.ViewControllers;
 using IntroSkip.Configuration;
 using System;
+using Zenject;
 
 namespace IntroSkip.UI
 {
     [ViewDefinition("IntroSkip.UI.IntroSkipSettingsViewController.bsml")]
     internal class IntroSkipSettingsViewController : BSMLAutomaticViewController
-    { 
+    {
+        [Inject] private IntroSkipConfig _config;
 
         [UIValue("enabled")]
         private bool Enabled
         {
-            get => PluginConfig.Instance.Enabled;
-            set => PluginConfig.Instance.Enabled = value;
+            get => _config.Enabled;
+            set => _config.Enabled = value;
         }
 
         [UIValue("skip_intro")]
         private bool SkipIntro
         {
-            get => PluginConfig.Instance.SkipIntro;
-            set => PluginConfig.Instance.SkipIntro = value;
+            get => _config.SkipIntro;
+            set => _config.SkipIntro = value;
         }
 
         [UIValue("skip_middle")]
         private bool SkipMiddle
         {
-            get => PluginConfig.Instance.SkipMiddle;
-            set => PluginConfig.Instance.SkipMiddle = value;
+            get => _config.SkipMiddle;
+            set => _config.SkipMiddle = value;
         }
 
         [UIValue("skip_outro")]
         private bool SkipOutro
         {
-            get => PluginConfig.Instance.SkipOutro;
-            set => PluginConfig.Instance.SkipOutro = value;
+            get => _config.SkipOutro;
+            set => _config.SkipOutro = value;
         }
 
         [UIValue("both_pressed")]
         private bool BothTriggers
         {
-            get => PluginConfig.Instance.BothTriggers;
-            set => PluginConfig.Instance.BothTriggers = value;
+            get => _config.BothTriggers;
+            set => _config.BothTriggers = value;
         }
 
         [UIValue("min_skip_time")]
         private float MinSkipTime
         {
-            get => PluginConfig.Instance.MinSkipTime;
-            set => PluginConfig.Instance.MinSkipTime = value;
+            get => _config.MinSkipTime;
+            set => _config.MinSkipTime = value;
         }
 
         [UIValue("min_hold_time")]
         private float MinHoldTime
         {
-            get => PluginConfig.Instance.MinHoldTime;
-            set => PluginConfig.Instance.MinHoldTime = value;
+            get => _config.MinHoldTime;
+            set => _config.MinHoldTime = value;
         }
 
         [UIAction("min_time_format")]

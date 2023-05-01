@@ -7,7 +7,7 @@ namespace IntroSkip.Installers
     {
         public override void InstallBindings()
         {
-            if (!PluginConfig.Instance.Enabled) return;
+            if (!Container.Resolve<IntroSkipConfig>().Enabled) return;
             Container.BindInterfacesAndSelfTo<IntroSkipController>().AsSingle();
         }
     }

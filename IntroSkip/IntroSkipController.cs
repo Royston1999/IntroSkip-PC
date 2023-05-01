@@ -11,6 +11,7 @@ namespace IntroSkip
 {
     public class IntroSkipController : IInitializable, ITickable
     {
+        [Inject] private IntroSkipConfig _config;
         [Inject] private AudioTimeSyncController _audioTimeSyncController;
         [Inject] private IDifficultyBeatmap _difficultyBeatmap;
         [Inject] private IReadonlyBeatmapData _readonlyBeatmapData;
@@ -33,10 +34,10 @@ namespace IntroSkip
             _rightController = _pauseMenuManager.transform.Find("MenuControllers/ControllerRight").GetComponent<VRController>();
             _audioSource = _audioTimeSyncController.GetField<AudioSource, AudioTimeSyncController>("_audioSource");
 
-            _skipTimePairs = IntroSkipUtils.CreateSkipTimePairs(_readonlyBeatmapData, _difficultyBeatmap.level.songDuration);
-            _skipText = CreateSkipText();
-            _requiredHoldTime = PluginConfig.Instance.MinHoldTime;
-            _requiresBothTriggers = PluginConfig.Instance.BothTriggers;
+            _skipTimePairs = IntroSkipUtils.CreateSkipTimePairs(_readonlyBeatmapData, _difficultyBeatmap.level.songDuration, _config);
+            _skipText = IntroSkipUtils.CreateSkipText(_coreGameHudController);
+            _requiredHoldTime = _config.MinHoldTime;
+            _requiresBothTriggers = _config.BothTriggers;
             _skipItr = _skipTimePairs.GetEnumerator();
             IterateToNextPair();
         }
@@ -64,26 +65,9 @@ namespace IntroSkip
             else if (_timeHeld > 0) _timeHeld = 0; // reset if no longer holding triggers
         }
 
-        TextMeshProUGUI CreateSkipText()
-        {
-            var GO = new GameObject();
-            GO.AddComponent<Canvas>();
-            var text = GO.AddComponent<TextMeshProUGUI>();
-            GO.transform.parent = _coreGameHudController.transform;
-            
-            text.text = "Press Triggers to Skip";
-            text.fontSize = 8f;
-            text.transform.position = new Vector3(-3.2f, 2.35f, 7f);
-            text.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
-            text.alignment = TextAlignmentOptions.Center;
-            text.gameObject.SetActive(false);
-            return text;
-        }
-
         void SetSkipText(bool value)
         {
-            if (_skipText == null) _skipText = CreateSkipText();
-            if (_skipText.gameObject.activeSelf != value) _skipText.gameObject.SetActive(value);
+            if (_skipText != null && _skipText.gameObject.activeSelf != value) _skipText.gameObject.SetActive(value);
         }
 
         void IterateToNextPair()
