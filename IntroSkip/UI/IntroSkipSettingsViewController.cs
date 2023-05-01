@@ -37,6 +37,13 @@ namespace IntroSkip.UI
             set => PluginConfig.Instance.SkipOutro = value;
         }
 
+        [UIValue("both_pressed")]
+        private bool BothTriggers
+        {
+            get => PluginConfig.Instance.BothTriggers;
+            set => PluginConfig.Instance.BothTriggers = value;
+        }
+
         [UIValue("min_skip_time")]
         private float MinSkipTime
         {

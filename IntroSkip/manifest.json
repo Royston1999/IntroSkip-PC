@@ -1,12 +1,14 @@
 ﻿{
-  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
-  "id": "IntroSkip",
-  "name": "IntroSkip",
-  "author": "",
-  "version": "0.0.1",
-  "description": "",
-  "gameVersion": "1.18.3",
-  "dependsOn": {
-    "BSIPA": "^4.2.0"
-  }
+    "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
+    "id": "IntroSkip",
+    "name": "IntroSkip",
+    "author": "Polly51104",
+    "version": "0.0.1",
+    "description": "skip the beginning, middle, and endings of songs!",
+    "gameVersion": "1.28.0",
+    "dependsOn": {
+        "BSIPA": "^4.2.0",
+        "BeatSaberMarkupLanguage": "^1.6.2",
+        "SiraUtil": "^3.0.5"
+    }
 }

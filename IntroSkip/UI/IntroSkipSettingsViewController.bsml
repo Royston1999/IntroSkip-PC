@@ -4,6 +4,7 @@
 		<toggle-setting apply-on-change='true' value ='skip_intro' text='Skip Intro' hover-hint='Skip the begging of songs' />
 		<toggle-setting apply-on-change='true' value ='skip_middle' text='Skip Middle' hover-hint='Skip the any gaps in the middle of songs' />
 		<toggle-setting apply-on-change='true' value ='skip_outro' text='Skip Outro' hover-hint='Skip the outro of songs' />
+		<toggle-setting apply-on-change='true' value ='both_pressed' text='Require Both Triggers' hover-hint='Only skip if both triggers are pressed' />
 		<slider-setting apply-on-change='true' value='min_skip_time' show-buttons='true' text='Minimum Skip Time' min='2.5' max='10.0' increment='0.1' formatter='min_time_format' />
 		<slider-setting apply-on-change='true' value='min_hold_time' show-buttons='true' text='Minimum Hold Time' min='0' max='5.0' increment='0.1' formatter='min_time_format' />
 	</settings-container>

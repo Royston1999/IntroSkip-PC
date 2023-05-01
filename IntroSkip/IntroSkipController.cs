@@ -15,7 +15,7 @@ namespace IntroSkip
         [Inject] private IDifficultyBeatmap _difficultyBeatmap;
         [Inject] private IReadonlyBeatmapData _readonlyBeatmapData;
         [Inject] private PauseMenuManager _pauseMenuManager;
-        [Inject] private ComboUIController _comboUIController;
+        [Inject] private CoreGameHUDController _coreGameHudController;
         private VRController _leftController;
         private VRController _rightController;
         private AudioSource _audioSource;
@@ -24,6 +24,7 @@ namespace IntroSkip
         private SkipTimePairs.Enumerator _skipItr;
         private float _requiredHoldTime;
         private float _timeHeld;
+        private bool _requiresBothTriggers;
         private bool _iterable;
 
         public void Initialize()
@@ -35,6 +36,7 @@ namespace IntroSkip
             _skipTimePairs = IntroSkipUtils.CreateSkipTimePairs(_readonlyBeatmapData, _difficultyBeatmap.level.songDuration);
             _skipText = CreateSkipText();
             _requiredHoldTime = PluginConfig.Instance.MinHoldTime;
+            _requiresBothTriggers = PluginConfig.Instance.BothTriggers;
             _skipItr = _skipTimePairs.GetEnumerator();
             IterateToNextPair();
         }
@@ -45,7 +47,7 @@ namespace IntroSkip
 
             float currentTime = _audioTimeSyncController.songTime;
             float bufferedCurrentTime = currentTime + 10 * Time.deltaTime;
-            bool triggersPressed = _leftController.triggerValue > 0.85 && _rightController.triggerValue > 0.85;
+            bool triggersPressed = TriggeresPressed();
             bool notPaused = _audioTimeSyncController.state == AudioTimeSyncController.State.Playing;
             float skipStart = _skipItr.Current.Item1;
             float skipEnd = _skipItr.Current.Item2;
@@ -64,9 +66,16 @@ namespace IntroSkip
 
         TextMeshProUGUI CreateSkipText()
         {
-            var text = BeatSaberUI.CreateText((RectTransform)_comboUIController.transform, "Press Triggers to Skip", new Vector2(0, 57));
+            var GO = new GameObject();
+            GO.AddComponent<Canvas>();
+            var text = GO.AddComponent<TextMeshProUGUI>();
+            GO.transform.parent = _coreGameHudController.transform;
+            
+            text.text = "Press Triggers to Skip";
+            text.fontSize = 8f;
+            text.transform.position = new Vector3(-3.2f, 2.35f, 7f);
+            text.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
             text.alignment = TextAlignmentOptions.Center;
-            text.transform.localScale = new Vector3(6.0f, 6.0f, 0.0f);
             text.gameObject.SetActive(false);
             return text;
         }
@@ -82,6 +91,14 @@ namespace IntroSkip
             SetSkipText(false);
             _timeHeld = 0f;
             _iterable = _skipItr.MoveNext();
+        }
+
+        bool TriggeresPressed()
+        {
+            bool leftPressed = _leftController.triggerValue > 0.85f;
+            bool rightPressed = _rightController.triggerValue > 0.85f;
+
+            return _requiresBothTriggers ? leftPressed && rightPressed : leftPressed || rightPressed;
         }
     }
 }

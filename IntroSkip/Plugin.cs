@@ -20,7 +20,7 @@ namespace IntroSkip
             PluginConfig.Instance = config.Generated<PluginConfig>();
             Instance = this;
             Log = logger;
-            zenjector.Expose<ComboUIController>("Environment");
+            zenjector.Expose<CoreGameHUDController>("Environment");
             zenjector.Install<IntroSkipInstaller>(Location.StandardPlayer);
             zenjector.Install<MenuInstaller>(Location.Menu);
             Log.Info("IntroSkip initialized.");
