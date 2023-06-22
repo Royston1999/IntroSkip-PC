@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 using IntroSkip.Utils;
-using BeatSaberMarkupLanguage;
 using SkipTimePairs = System.Collections.Generic.List<System.Tuple<float, float>>;
 using IntroSkip.Configuration;
 

@@ -23,7 +23,7 @@ namespace IntroSkip.Utils
                 if (sliderData.sliderType == SliderData.Type.Burst)
                 {
                     int slices = sliderData.sliceCount;
-                    for (int i = 1; i < slices; i++) mapValues.Add(Mathf.LerpUnclamped(sliderData.time, sliderData.tailTime, i / (slices - 1)));
+                    for (int i = 1; i < slices; i++) mapValues.Add(Mathf.LerpUnclamped(sliderData.time, sliderData.tailTime, (float)i / (slices - 1)));
                 }
             }
             foreach (var obstacleData in mapData.GetBeatmapDataItems<ObstacleData>(0))

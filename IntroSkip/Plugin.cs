@@ -19,10 +19,11 @@ namespace IntroSkip
         {
             Instance = this;
             Log = logger;
+            IntroSkipConfig myConfig = config.Generated<IntroSkipConfig>();
             zenjector.Expose<CoreGameHUDController>("Environment");
             zenjector.Install<IntroSkipInstaller>(Location.StandardPlayer);
             zenjector.Install<MenuInstaller>(Location.Menu);
-            zenjector.Install(Location.App, container => container.BindInstance(config.Generated<IntroSkipConfig>()));
+            zenjector.Install(Location.App, container => container.BindInstance(myConfig));
             Log.Info("IntroSkip initialized.");
         }
     }

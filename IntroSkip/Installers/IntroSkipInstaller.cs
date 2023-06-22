@@ -5,9 +5,10 @@ namespace IntroSkip.Installers
 {
     internal class IntroSkipInstaller : Installer
     {
+        [Inject] IntroSkipConfig _config;
         public override void InstallBindings()
         {
-            if (!Container.Resolve<IntroSkipConfig>().Enabled) return;
+            if (!_config.Enabled) return;
             Container.BindInterfacesAndSelfTo<IntroSkipController>().AsSingle();
         }
     }

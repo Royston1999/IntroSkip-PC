@@ -9,7 +9,7 @@ namespace IntroSkip.UI
     [ViewDefinition("IntroSkip.UI.IntroSkipSettingsViewController.bsml")]
     internal class IntroSkipSettingsViewController : BSMLAutomaticViewController
     {
-        [Inject] private IntroSkipConfig _config;
+        [Inject] private readonly IntroSkipConfig _config;
 
         [UIValue("enabled")]
         private bool Enabled

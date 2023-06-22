@@ -18,20 +18,14 @@ namespace IntroSkip.UI
         }
 
         [Inject]
-        public void Construct(IntroSkipSettingsViewController viewController)
-        {
-            _viewController = viewController;
-        }
+        public void Construct(IntroSkipSettingsViewController viewController) => _viewController = viewController;
+        
 
-        public void Present()
-        {
-            BeatSaberUI.MainFlowCoordinator.PresentFlowCoordinator(this);
-        }
+        public void Present() => BeatSaberUI.MainFlowCoordinator.PresentFlowCoordinator(this);
+        
 
-        protected override void BackButtonWasPressed(ViewController _)
-        {
-            BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this);
-        }
+        protected override void BackButtonWasPressed(ViewController _) => BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this);
+        
 
         public void Initialize()
         {
